@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Signup Page</title>
   <style>
     body {
@@ -61,8 +64,6 @@
       background-color: #45a049;
     }
   </style>
-  <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 </head>
 <body>
   <div class="container">
@@ -74,7 +75,7 @@
       <label for="password">Password:</label>
       <input type="password" id="password" name="password" placeholder="Enter your password" required>
       <br><br>
-      <input type="submit" value="Signup">
+      <input type="submit" value="Signup" onclick="getAuth()">
     </form>
   </div>
   <script type="module">
@@ -94,8 +95,12 @@
       appId: "1:60528128566:web:c8c0edaef5a8e3ec011e97"
     };
     
-    const email = "mateo.morales01@epn.edu.ec";
-    const password = "12345678";
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+
+    var email = emailInput.value;
+    var password = passwordInput.value;
+    console.log(email, password);
 
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
@@ -107,7 +112,7 @@
     .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        //console.log(user);
+        console.log(user);
         // ...
     })
     .catch((error) => {

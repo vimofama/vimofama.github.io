@@ -75,7 +75,7 @@
       <label for="password">Password:</label>
       <input type="password" id="password" name="password" placeholder="Enter your password" required>
       <br><br>
-      <input type="submit" value="Signup" onclick="getAuth()">
+      <input type="submit" value="Signup" onclick="registerUser()">
     </form>
   </div>
   <script type="module">
@@ -94,33 +94,32 @@
       messagingSenderId: "60528128566",
       appId: "1:60528128566:web:c8c0edaef5a8e3ec011e97"
     };
-    
-    const emailInput = document.getElementById("email");
-    const passwordInput = document.getElementById("password");
-
-    var email = emailInput.value;
-    var password = passwordInput.value;
-    console.log(email, password);
 
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
 
     import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
 
-    const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user);
-        // ...
-    })
-    .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-        // ..
-    });
+    function registerUser(){
+
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+
+      const auth = getAuth();
+      createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+          // ...
+      })
+      .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode, errorMessage);
+          // ..
+      });
+    }
 
   </script>
 </body>
